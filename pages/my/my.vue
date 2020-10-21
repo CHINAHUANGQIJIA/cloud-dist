@@ -1,5 +1,5 @@
 <template>
-	djkal
+	<view>打卡萨评论</view>
 </template>
 
 <script>
