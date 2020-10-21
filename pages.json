@@ -10,7 +10,7 @@
 			{
 				"path": "pages/list/list",
 				"style": {
-					"navigationBarTitleText": "uni-app"
+					"navigationBarTitleText": "传输中心"
 				}},
 				{
 					"path": "pages/my/my",
