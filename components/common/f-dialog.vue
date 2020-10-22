@@ -1,5 +1,5 @@
 <template>
-<!-- 取消 -->
+
 <!-- 全选 -->
 	<!-- 封装自定义的全局弹出层。通过ref引用dom元素 -->
 	<uni-popup ref="dialog">
