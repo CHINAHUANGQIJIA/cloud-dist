@@ -1,4 +1,5 @@
 <script>
+<!-- 取消 -->
 	export default {
 		onLaunch: function() {
 			console.log('App Launch')

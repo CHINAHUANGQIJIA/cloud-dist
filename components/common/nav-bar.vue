@@ -1,4 +1,5 @@
 <template>
+<!-- 取消 -->
 	<view>
 		<view class="fixed-top bg-white">
 			<uni-status-bar></uni-status-bar>
