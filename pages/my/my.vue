@@ -1,4 +1,5 @@
 <template>
+<!-- 取消 i-->
 	<view>
 		
 	</view>
