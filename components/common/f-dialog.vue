@@ -1,7 +1,7 @@
 <template>
 
 <!-- 全选 -->
-	<!-- 封装自定义的全局弹出层。通过ref引用dom元素 -->
+	<!-- 封装自定义的全局弹出层。通过ref用dom元素 -->
 	<uni-popup ref="dialog">
 		<!-- 弹出层最外层容器样式 -->
 		<view style="width: 600rpx;" class="bg-white rounded">
