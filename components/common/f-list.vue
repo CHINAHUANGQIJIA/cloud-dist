@@ -1,5 +1,5 @@
 <template>
-<!-- 取消 -->
+<!-- 取消 i-->
 	<view class="p-3 flex align-center border-bottom border-light-secondary">
 		<text class="iconfont" :class="iconClass" style="font-size: 60rpx;"></text>
 		<view class="flex flex-column ml-3" style="line-height: 1.2;">
