@@ -6,71 +6,74 @@
 				"app-plus":{
 					"titleNView":false
 				}
-			}},
-			{
-				"path": "pages/list/list",
-				"style": {
-					"navigationBarTitleText": "传输中心"
-				}},
-				{
-					"path": "pages/my/my",
-					"style": {
-						"navigationBarTitleText": "我的"
-				}	}
-		
+			}
+		}, {
+			"path": "pages/list/list",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/my/my",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}
 	],
 	"globalStyle": {
+
+		"navigationBarTextStyle": "black",
+
+		"navigationBarTitleText": "uni-app",
+
+		"navigationBarBackgroundColor": "#F8F8F8",
+
+		"backgroundColor": "#F8F8F8"
+
+	},
+	"tabBar": {
 	
-	    "navigationBarTextStyle": "black",
+	    "backgroundColor": "#FFFFFF",
 	
-	    "navigationBarTitleText": "uni-app",
+	    "borderStyle": "black",
 	
-	    "navigationBarBackgroundColor": "#F8F8F8",
+	    "color": "#BDBDBD",
 	
-	    "backgroundColor": "#F8F8F8"
+	    "selectedColor": "#009CFF",
 	
-	  },
-	  "tabBar": {
-	  
-	      "backgroundColor": "#FFFFFF",
-	  
-	      "borderStyle": "black",
-	  
-	      "color": "#BDBDBD",
-	  
-	      "selectedColor": "#009CFF",
-	  
-	      "list": [{
-	  
-	        "iconPath": "static/tabbar/index.png",
-	  
-	        "selectedIconPath": "static/tabbar/index-selected.png",
-	  
-	        "pagePath": "pages/index/index",
-	  
-	        "text": "首页"
-	  
-	      }, {
-	  
-	        "iconPath": "static/tabbar/list.png",
-	  
-	        "selectedIconPath": "static/tabbar/list-selected.png",
-	  
-	        "pagePath": "pages/list/list",
-	  
-	        "text": "传输"
-	  
-	      }, {
-	  
-	        "iconPath": "static/tabbar/my.png",
-	  
-	        "selectedIconPath": "static/tabbar/my-selected.png",
-	  
-	        "pagePath": "pages/my/my",
-	  
-	        "text": "我的"
-	  
-	      }]
-	  
-	    }
+	    "list": [{
+	
+	      "iconPath": "static/tabbar/cloud-index.png",
+	      "selectedIconPath": "static/tabbar/index-selected.png",
+	
+	      "pagePath": "pages/index/index",
+	
+	      "text": "首页"
+	
+	    }, {
+	
+	      "iconPath": "static/tabbar/list.png",
+	
+	      "selectedIconPath": "static/tabbar/list-selected.png",
+	
+	      "pagePath": "pages/list/list",
+	
+	      "text": "传输"
+	
+	    }, {
+	
+	      "iconPath": "static/tabbar/my.png",
+	
+	      "selectedIconPath": "static/tabbar/my-selected.png",
+	
+	      "pagePath": "pages/my/my",
+	
+	      "text": "我的"
+	
+	    }]
+	
+	  }
 }

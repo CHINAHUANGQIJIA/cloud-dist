@@ -13,15 +13,13 @@
 </script>
 
 <style>
-	/* 引入全局样式 */
-@import url("./common/uni.css");
-/* 引入自定义图标 */
-@import url("./common/icon.css");
-/* 动画库 */
-@import url("./common/animate.css");
-/* 自定义样式库 */
-@import url("./common/free.css");
-/* 全局样式 */
-@import url("./common/common.css");
+	/*每个页面公共css */
+	/* 引入全局公共样式 */
+	@import url("/common/uni.css");
+	/* 引入公共样式 */
+	@import url("/common/common.css");
+	/* 引入自定义图标样式 */
+	@import url("/common/icon.css");
+	/* 引入通用free样式库 */
+	@import url("/common/free.css");
 </style>
-

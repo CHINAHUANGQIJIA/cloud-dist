@@ -1,9 +1,19 @@
 <template>
-	<view>打卡萨评论</view>
+	<view>
+		
+	</view>
 </template>
 
 <script>
+	export default {
+		data() {
+			return {
+				
+			};
+		}
+	}
 </script>
 
-<style>
+<style lang="scss">
+
 </style>
