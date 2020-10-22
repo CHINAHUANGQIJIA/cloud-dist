@@ -1,4 +1,5 @@
 <template>
+<!-- 全选 -->
 	<view>
 		
 	</view>

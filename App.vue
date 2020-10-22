@@ -1,5 +1,5 @@
 <script>
-<!-- 取消 -->
+<!-- 全选 -->
 	export default {
 		onLaunch: function() {
 			console.log('App Launch')
