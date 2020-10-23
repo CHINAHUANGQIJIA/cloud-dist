@@ -114,6 +114,7 @@
 					{
 						type: 'video',
 						name: 'uniapp实战教程.mp4',
+						data: 'https://asprintfortz1106.oss-cn-beijing.aliyuncs.com/space-api-avatar/9974cb93c03a76c8d68d82e1226080b6.mp4',
 						create_time: '2020-10-21 08:00',
 						checked: false
 					},
@@ -166,7 +167,6 @@
 			doEvent(item) {
 				switch (item.type) {
 					case 'image':
-						//预览图片
 						let images = this.list.filter(item => {
 							return item.type === 'image'
 						})
@@ -177,7 +177,7 @@
 						break;
 					case 'video':
 						uni.navigateTo({
-							url: '.. /video/video?url=' + item.data + '&title=' + item.name,
+							url: '../video/video?url=' + item.data + '&title=' + item.name,
 						});
 						break;
 					default:
