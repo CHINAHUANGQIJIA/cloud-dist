@@ -1,6 +1,4 @@
 <template>
-<!-- 取消 -->
-<!-- 全选 -->
 	<view>
 		<view class="fixed-top bg-white">
 			<uni-status-bar></uni-status-bar>

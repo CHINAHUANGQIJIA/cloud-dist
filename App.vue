@@ -1,6 +1,4 @@
 <script>
-<!-- 全选 -->
-<!-- 取消 i-->
 	export default {
 		onLaunch: function() {
 			console.log('App Launch')
