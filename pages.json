@@ -28,7 +28,7 @@
 		}, {
 			"path": "pages/my/my",
 			"style": {
-				"navigationBarTitleText": "",
+				"navigationBarTitleText": "个人中心",
 				"enablePullDownRefresh": false
 			}
 
@@ -40,7 +40,17 @@
 				"enablePullDownRefresh": false
 			}
 		
-		}
+		},
+		{
+		            "path" : "pages/login/login",
+		            "style" :                                                                                    
+		            {
+		                "app-plus":{
+							"titleNView":false
+						}
+		            }
+		            }
+		
 	],
 	"globalStyle": {
 
