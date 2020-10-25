@@ -18,7 +18,7 @@
 				<scroll-view scroll-y="true" class="flex-1">
 					<view style="height: 60rpx;" class="bg-light flex align-center font-sm px-2 text-muted">文件下载至：storage/xxx/xxx</view>
 					<view class="p-2 border-bottom border-light-secondary font text-muted">下载中({{downing.length}})</view>
-					<!-- 这里要注意，因为下面统计还有个f-list中绑定了key为index，会冲突，所以呀分别给他们加上不同前缀区分，否则会报错 -->
+					<!-- 这里要注意，因为下面统计还有个f-list中绑定了key为index，会冲突，所分别给他们加上不同前缀区分，否则会报错 -->
 					<f-list v-for="(item, index) in downing" :key="'i' + index" :item="item" :index="index">
 						<view style="height: 70rpx;" class="flex align-center text-main">
 							<text class="iconfont icon-zanting"></text>
