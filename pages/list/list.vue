@@ -12,7 +12,7 @@
 				<text style="height: 8rpx;width: 140rpx;" class="rounded" :class="tabIndex === index ? 'bg-main' : 'bg-white'"></text>
 			</view>
 		</view>
-		<!-- swiper内容随着上面tab的切换联动 -->
+		<!-- swiper内容随着上面tab的切换联动去 -->
 		<swiper :duration="250" class="flex-1 flex" :current="tabIndex" @change="changeTab($event.detail.current)">
 			<swiper-item class="flex-1 flex" v-for="(item, index) in tabBars" :key="index">
 				<scroll-view scroll-y="true" class="flex-1">
