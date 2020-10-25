@@ -165,80 +165,59 @@
 	flex-direction: row;
 }
 
-.flex-center {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
-}
-
 .flex-row {
-	display: flex;
 	flex-direction: row !important;
 }
 
 .flex-column {
-	display: flex;
 	flex-direction: column !important;
 }
 
 .flex-row-reverse {
-	display: flex;
 	flex-direction: row-reverse !important;
 }
 
 .flex-column-reverse {
-	display: flex;
 	flex-direction: column-reverse !important;
 }
 
 .flex-wrap {
-	display: flex;
 	flex-wrap: wrap;
 }
 
 .flex-nowrap {
-	display: flex;
 	flex-wrap: nowrap;
 }
 
 .justify-start {
-	display: flex;
 	justify-content: flex-start;
 }
 
 .justify-end {
-	display: flex;
 	justify-content: flex-end;
 }
 
 .justify-between {
-	display: flex;
 	justify-content: space-between;
 }
 
 .justify-center {
-	display: flex;
 	justify-content: center;
 }
 
 .align-center {
-	display: flex;
 	align-items: center;
 }
 
 .align-stretch {
-	display: flex;
 	align-items: stretch;
 }
 
 .align-start {
-	display: flex;
 	align-items: flex-start;
 }
 
 .align-end {
-	display: flex;
 	align-items: flex-end;
 }
 
@@ -823,7 +802,7 @@
 	white-space: nowrap;
 	/* #endif */
 	/* #ifdef APP-PLUS-NVUE */
-	max-lines: 1;
+	lines: 1;
 	/* #endif */
 }
 
