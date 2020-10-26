@@ -46,19 +46,10 @@
 		<!-- 搜索框 -->
 		<view class="px-3 py-2">
 			<view class="position-relative">
-				<view 
-					style="height: 70rpx;width: 70rpx;position: absolute;top: 0;left: 0;" 
-					class="flex align-center justify-center text-light-muted"
-				>
+				<view style="height: 70rpx;width: 70rpx;position: absolute;top: 0;left: 0;" class="flex align-center justify-center text-light-muted">
 					<text class="iconfont icon-sousuo"></text>
 				</view>
-				<input 
-					style="height: 70rpx;padding-left: 70rpx;" 
-					type="text" 
-					class="bg-light font-md rounded-circle" 
-					placeholder="搜索网盘文件" 
-					@input="search" 
-				/>
+				<input style="height: 70rpx;padding-left: 70rpx;" type="text" class="bg-light font-md rounded-circle" placeholder="搜索网盘文件" @input="search" />
 			</view>
 		</view>
 
@@ -158,7 +149,6 @@ export default {
 			],
 			renameValue: '',
 			newdirname: '',
-
 			list: [],
 			addList: [
 				{
@@ -261,7 +251,6 @@ export default {
 		select(e) {
 			//接收到子组件传递过来的索引选中状态，将对应的list中的数据更新
 			this.list[e.index].checked = e.value;
-
 			// 自己的方式实现多选操作——根据选中的元素数量切换顶部导航样式
 			// if (e.value === true){
 			// 	this.count = this.count + 1
@@ -389,6 +378,18 @@ export default {
 						this.newdirname = '';
 					});
 					break;
+				case '上传图片':
+					//选择图片，限制为9张
+					uni.chooseImage({
+						count: 9,
+						success: res => {
+							// 选择图片成功，就循环异步调用上传接口
+							res.tempFiles.forEach(item => {
+								this.upload(item, 'image');
+							});
+						}
+					});
+					break;
 				default:
 					break;
 			}
@@ -407,13 +408,59 @@ export default {
 			if (e.detail.value === '') {
 				return this.getData();
 			}
-
 			this.$H
 				.get('/file/search?keyword=' + e.detail.value, {
 					token: true
 				})
 				.then(res => {
 					this.list = this.formatList(res.rows);
+				});
+		},
+		//生成唯一ID
+		genID(length) {
+			return Number(
+				Math.random()
+					.toString()
+					.substr(3, length) + Date.now()
+			).toString(36);
+		},
+		//上传
+		upload(file, type) {
+			// 上传文件类型
+			let t = type;
+			// 上传的key，用来区分每个文件
+			const key = this.genID(8);
+			// 构建上传文件的对象，文件名、类型、大小、唯一的key、进度、状态、创建时间
+			let obj = {
+				name: file.name,
+				type: t,
+				size: file.size,
+				key,
+				progress: 0,
+				status: true,
+				created_time: new Date().getTime()
+			};
+			// 创建上传任务，分发给Vuex的Actions，异步上传调度，主要是实现上传进度的回调
+			this.$store.dispatch('createUploadJob', obj);
+			// 上传，查询参数为当前位置所在目录的id，body参数为文件路径
+			this.$H
+				.upload(
+					'/upload?file_id=' + this.file_id,
+					{
+						filePath: file.path
+					},
+					p => {
+						//更新上传任务进度
+						this.$store.dispatch('updateUploadJob', {
+							status: true,
+							progress: p,
+							key
+						});
+					}
+				)
+				.then(res => {
+					//上传成功，请求数据更新列表
+					this.getData();
 				});
 		}
 	},

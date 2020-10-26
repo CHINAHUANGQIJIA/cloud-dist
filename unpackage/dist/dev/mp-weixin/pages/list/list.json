@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "传输列表",
+  "usingComponents": {
+    "f-list": "/components/common/f-list"
+  }
+}

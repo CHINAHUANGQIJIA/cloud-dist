@@ -1,0 +1,1 @@
+<view style="height:100vh;"><video style="width:750rpx;height:100vh;" src="{{url}}" controls="{{true}}" autoplay="{{true}}" data-event-opts="{{[['ended',[['back',['$event']]]]]}}" bindended="__e"></video></view>

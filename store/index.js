@@ -7,9 +7,40 @@ import $H from '../common/request.js';
 export default new Vuex.Store({
 	state: {
 		user: null,
-		token: null
+		token: null,
+		uploadList: []
 	},
 	actions: {
+		// 创建一个上传任务
+		createUploadJob({
+			state
+		}, obj) {
+			// 添加到上传队列的最前面
+			state.uploadList.unshift(obj)
+			// 异步设置本地存储,记录键值对为：上传人和上传内容
+			uni.setStorage({
+				key: "uploadList_" + state.user.id,
+				data: JSON.stringify(state.uploadList)
+			})
+		},
+		//更新上传任务进度
+		updateUploadJob({
+			state
+		}, obj) {
+			// 在上传队列中查找该用户的上传任务
+			let i = state.uploadList.findIndex(item => item.key === obj.key)
+			// 如果存在
+			if (i !== -1) {
+				// 更新progress属性的值和上传状态的值
+				state.uploadList[i].progress = obj.progress
+				state.uploadList[i].status = obj.status
+				// 异步更新本地存储
+				uni.setStorage({
+					key: "uploadList_" + state.user.id,
+					data: JSON.stringify(state.uploadList)
+				})
+			}
+		},
 		logout({
 			state
 		}) {

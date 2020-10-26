@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "nav-bar": "/components/common/nav-bar",
+    "f-list": "/components/common/f-list",
+    "f-dialog": "/components/common/f-dialog",
+    "uni-popup": "/components/uni-ui/uni-popup/uni-popup"
+  }
+}
