@@ -9,7 +9,7 @@
   "compileType": "miniprogram",
   "libVersion": "",
   "appid": "touristappid",
-  "projectname": "cloud-disk",
+  "projectname": "uni-quickstart",
   "condition": {
     "search": {
       "current": -1,

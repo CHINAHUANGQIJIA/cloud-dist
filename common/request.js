@@ -28,6 +28,7 @@ export default {
 		return new Promise((res, rej) => {
 			// 请求之前验证...
 			// token验证
+			console.log(options.url)
 			if (options.token) {
 				let token = uni.getStorageSync('token')
 				// 二次验证

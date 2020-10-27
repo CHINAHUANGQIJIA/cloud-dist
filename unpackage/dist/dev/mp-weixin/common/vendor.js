@@ -7882,9 +7882,9 @@ module.exports = g;
 
 /***/ }),
 /* 4 */
-/*!*******************************************************!*\
-  !*** D:/大三上课程资料/yyy/cloud-disk/cloud-disk/pages.json ***!
-  \*******************************************************/
+/*!*************************************************!*\
+  !*** D:/大三上课程资料/cloud/12/cloud-disk/pages.json ***!
+  \*************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -8025,9 +8025,9 @@ function normalizeComponent (
 
 /***/ }),
 /* 11 */
-/*!**************************************************************!*\
-  !*** D:/大三上课程资料/yyy/cloud-disk/cloud-disk/common/request.js ***!
-  \**************************************************************/
+/*!********************************************************!*\
+  !*** D:/大三上课程资料/cloud/12/cloud-disk/common/request.js ***!
+  \********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8062,6 +8062,7 @@ function normalizeComponent (
     return new Promise(function (res, rej) {
       // 请求之前验证...
       // token验证
+      console.log(options.url);
       if (options.token) {
         var token = uni.getStorageSync('token');
         // 二次验证
@@ -8191,9 +8192,9 @@ function normalizeComponent (
 
 /***/ }),
 /* 12 */
-/*!***********************************************************!*\
-  !*** D:/大三上课程资料/yyy/cloud-disk/cloud-disk/store/index.js ***!
-  \***********************************************************/
+/*!*****************************************************!*\
+  !*** D:/大三上课程资料/cloud/12/cloud-disk/store/index.js ***!
+  \*****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8203,40 +8204,40 @@ var _vuex = _interopRequireDefault(__webpack_require__(/*! vuex */ 13));
 
 
 var _request = _interopRequireDefault(__webpack_require__(/*! ../common/request.js */ 11));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}_vue.default.use(_vuex.default);var _default =
-
 new _vuex.default.Store({
   state: {
     user: null,
-    token: null },
+    token: null,
+    dirs: null,
+    uploadList: [],
+    downlist: [] },
 
   actions: {
-    logout: function logout(_ref)
+    login: function login(_ref,
 
-    {var state = _ref.state;
+    user) {var state = _ref.state;
+      state.user = user;
+      state.token = user.token;
+
+      uni.setStorageSync('user', JSON.stringify(user));
+      uni.setStorageSync('token', user.token);
+    },
+    logout: function logout(_ref2,
+
+    user) {var state = _ref2.state;
       _request.default.post('/logout', {}, {
         token: true });
 
       state.user = null;
       state.token = null;
-      // 清除缓存
       uni.removeStorageSync('user');
       uni.removeStorageSync('token');
       uni.removeStorageSync('dirs');
-      // 跳转回登录页面
+
       uni.reLaunch({
         url: '/pages/login/login' });
 
     },
-    login: function login(_ref2,
-
-    user) {var state = _ref2.state;
-      state.user = user;
-      state.token = user.token;
-      // 将登陆用户信心和token存入缓存
-      uni.setStorageSync('user', JSON.stringify(user));
-      uni.setStorageSync('token', user.token);
-    },
-    // 初始化用户信息
     initUser: function initUser(_ref3)
 
     {var state = _ref3.state;
@@ -8246,12 +8247,124 @@ new _vuex.default.Store({
         state.token = state.user.token;
       }
     },
-    // 更新用户网盘使用量和总量
-    updateSize: function updateSize(_ref4,
+    initList: function initList(_ref4)
 
-    e) {var state = _ref4.state;
+    {var state = _ref4.state;
+      if (state.user) {
+        var d = uni.getStorageSync("downlist_" + state.user.id);
+        var u = uni.getStorageSync("uploadList" + state.user.id);
+
+        state.downlist = d ? JSON.parse(d) : [],
+        state.uploadList = u ? JSON.parse(u) : [];
+      }
+    },
+    updateSize: function updateSize(_ref5,
+
+    e) {var state = _ref5.state;
       state.user.total_size = e.total_size;
       state.user.used_size = e.used_size;
+    },
+    //创建一个上传任务
+    createUploadJob: function createUploadJob(_ref6,
+
+    obj) {var state = _ref6.state;
+      //添加到上传队列的最前面
+      state.uploadList.unshift(obj);
+      //异步设置本地存储，记录键值对为：上传人和上传内容
+      uni.setStorage({
+        key: 'uploadList_' + state.user.id,
+        data: JSON.stringify(state.uploadList) });
+
+    },
+    //更新下载任务进度
+    updateDownloadJob: function updateDownloadJob(_ref7,
+
+    obj) {var state = _ref7.state;
+      //在上传队列中查找该用户的上传任务
+      var i = state.downlist.findIndex(function (item) {return item.key === obj.key;});
+      //如果存在
+      if (i !== -1) {
+        //更新proress属性和上传状态值
+        state.downlist[i].progress = obj.progress;
+        state.downlist[i].status = obj.status;
+        //异步更新本地存储
+        uni.setStorage({
+          key: 'downlist_' + state.user.id,
+          data: JSON.stringify(state.downlist) });
+
+      }
+    },
+    //创建一个下载任务
+    createDownloadJob: function createDownloadJob(_ref8,
+
+    obj) {var state = _ref8.state;
+      //添加到上传队列的最前面
+      state.downlist.unshift(obj);
+      //异步设置本地存储，记录键值对为：下载人和下载内容
+      uni.setStorage({
+        key: 'downlist_' + state.user.id,
+        data: JSON.stringify(state.downlist) });
+
+    },
+    //更新上传任务进度
+    updateUploadJob: function updateUploadJob(_ref9,
+
+    obj) {var state = _ref9.state;
+      //在上传队列中查找该用户的上传任务
+      var i = state.uploadList.findIndex(function (item) {return item.key === obj.key;});
+      //如果存在
+      if (i !== -1) {
+        //更新proress属性和上传状态值
+        state.uploadList[i].progress = obj.progress;
+        state.uploadList[i].status = obj.status;
+        //异步更新本地存储
+        uni.setStorage({
+          key: 'uploadList_' + state.user.id,
+          data: JSON.stringify(state.uploadList) });
+
+      }
+    },
+    clearList: function clearList(_ref10)
+
+    {var state = _ref10.state;
+      if (state.user) {
+        uni.removeStorageSync('downlist_' + state.user.id);
+        uni.removeStorageSync('uploadList_' + state.user.id);
+        state.uploadList = [];
+        state.downlist = [];
+      }
+
+    },
+    getShareUrl: function getShareUrl(_ref11)
+
+    {var state = _ref11.state;
+      // #ifndef H5
+      uni.getClipboardData({
+        success: function success(res) {
+          //通过前面结果可以看到剪贴的链接是以http://127:0.0.1:7001/开头的，接口上线了这个地址需要修改
+          if (res.data.includes('http://127.0.0.1:7001/')) {
+            //需要从完整的链接截取出key值，数据库应该知道真正的链接就是和这个有关的
+            var key = res.data.substring(res.data.lastIndexOf('\/') + 1, res.data.length);
+            if (!key) {
+              return;
+            }
+            uni.showModal({
+              content: '检测有分享内容，是否打开?',
+              success: function success(res) {
+                if (res.confirm) {
+                  uni.navigateTo({
+                    url: "/pages/shareurl/shareurl?key=" + key });
+
+                  //清空剪切板
+                  uni.setClipboardData({
+                    data: '' });
+
+                }
+              } });
+
+          }
+        } });
+
     } } });exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

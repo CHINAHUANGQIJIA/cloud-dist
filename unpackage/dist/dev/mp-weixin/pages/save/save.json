@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "f-list": "/components/common/f-list"
+  }
+}

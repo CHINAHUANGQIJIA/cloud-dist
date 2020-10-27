@@ -22,8 +22,7 @@ export default {
 	components: {
 		uniStatusBar
 	}
-}
+};
 </script>
 
-<style>
-</style>
+<style></style>

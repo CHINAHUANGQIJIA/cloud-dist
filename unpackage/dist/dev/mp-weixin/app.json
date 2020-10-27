@@ -4,7 +4,9 @@
     "pages/index/index",
     "pages/list/list",
     "pages/my/my",
-    "pages/video/video"
+    "pages/video/video",
+    "pages/shareurl/shareurl",
+    "pages/save/save"
   ],
   "subPackages": [],
   "window": {
